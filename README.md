@@ -33,4 +33,4 @@
 1. **Clone or Download the Repository:**
 
 ```bash
-git clone https://github.com/your-username/hidaya.git
+git clone https://github.com/XdKeerXd/-Hidaya.git
