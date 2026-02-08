@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hidaya - A beautiful Quran app with Arabic text, translations, audio recitation, and search. Created by Ahmed Jaballah.">
+    <meta name="keywords" content="Quran, Islam, Arabic, Translation, Recitation, Hidaya, Ramadan">
+    <meta name="author" content="Ahmed Jaballah">
+    <title>Hidaya - Guidance from the Quran</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Amiri for Arabic, Inter for English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        arabic: ['Amiri', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="font-sans bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 min-h-screen">
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between gap-4">
+                <!-- Logo -->
+                <a href="#" id="logo-link" class="flex items-center gap-2 group">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/30 transition-shadow">
+                        <span class="text-white font-bold text-lg">ه</span>
+                    </div>
+                    <span
+                        class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">Hidaya</span>
+                </a>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-md hidden sm:block">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Search Quran..."
+                            class="w-full px-4 py-2 pl-10 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all">
+                        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex items-center gap-3">
+                    <!-- Mobile Search Toggle -->
+                    <button id="mobile-search-toggle"
+                        class="sm:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                        title="Toggle Dark Mode">
+                        <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg id="moon-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+
+                    <!-- Location for Prayer Times -->
+                    <button id="location-btn"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-primary-600 dark:text-primary-400"
+                        title="Update Location">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search (Hidden by default) -->
+            <div id="mobile-search" class="hidden mt-4 sm:hidden">
+                <input type="text" id="mobile-search-input" placeholder="Search Quran..."
+                    class="w-full px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500">
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center py-12 mb-8">
+            <h1
+                class="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary-600 via-primary-500 to-emerald-600 dark:from-primary-400 dark:via-primary-300 dark:to-emerald-400 bg-clip-text text-transparent animate-fade-in">
+                Hidaya
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 animate-fade-in-delay">
+                Guidance from the Quran
+            </p>
+
+            <!-- Prayer Times Widget -->
+            <div id="prayer-times"
+                class="max-w-4xl mx-auto mb-8 grid grid-cols-2 md:grid-cols-5 gap-3 animate-slide-up">
+                <!-- Prayer cards injected by JS -->
+            </div>
+
+            <!-- Daily Ayah Card -->
+            <div id="daily-ayah"
+                class="max-w-2xl mx-auto bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-600 dark:to-primary-800 rounded-2xl p-6 md:p-8 shadow-xl shadow-primary-500/20 text-white animate-slide-up">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <span class="text-sm font-medium uppercase tracking-wider">Daily Ayah</span>
+                </div>
+                <p id="daily-arabic" class="font-arabic text-2xl md:text-3xl leading-loose mb-4 text-right" dir="rtl">
+                    Loading...
+                </p>
+                <p id="daily-translation" class="text-base md:text-lg opacity-90 italic">
+                    Loading translation...
+                </p>
+                <p id="daily-reference" class="mt-4 text-sm opacity-75">
+                    — Loading...
+                </p>
+            </div>
+        </section>
+
+        <!-- Search Results Section (Hidden by default) -->
+        <section id="search-results" class="hidden mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold">Search Results</h2>
+                <button id="clear-search" class="text-primary-600 dark:text-primary-400 hover:underline">
+                    Clear Search
+                </button>
+            </div>
+            <div id="search-results-list" class="space-y-4">
+                <!-- Search results will be injected here -->
+            </div>
+        </section>
+
+        <!-- Surah List Section -->
+        <section id="surah-section">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <svg class="w-7 h-7 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                Surahs
+            </h2>
+
+            <div id="surah-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- Surah cards will be injected here -->
+                <div class="col-span-full text-center py-12">
+                    <div
+                        class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary-500 border-t-transparent">
+                    </div>
+                    <p class="mt-4 text-gray-500 dark:text-gray-400">Loading Surahs...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ayah Viewer Section (Hidden by default) -->
+        <section id="ayah-section" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <button id="back-to-surahs"
+                    class="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:underline">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Surahs
+                </button>
+                <div id="surah-info" class="text-right">
+                    <h2 id="surah-title" class="text-2xl font-bold">Surah Name</h2>
+                    <p id="surah-details" class="text-gray-500 dark:text-gray-400">Details</p>
+                </div>
+            </div>
+
+            <!-- Audio Controls -->
+            <div
+                class="bg-white dark:bg-gray-800 rounded-2xl p-4 mb-6 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full md:w-auto justify-center">
+                    <button id="play-all-btn"
+                        class="flex items-center gap-2 px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full transition-colors shadow-md shadow-primary-500/20">
+                        <svg id="play-all-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span id="play-all-text">Play Surah</span>
+                    </button>
+                    <button id="stop-btn"
+                        class="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-500 hover:text-red-500 rounded-full transition-colors"
+                        title="Stop">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Reciter & Settings -->
+                <div class="flex items-center gap-4 w-full md:w-auto justify-center flex-wrap">
+                    <select id="reciter-select"
+                        class="bg-gray-100 dark:bg-gray-700 border-none text-sm rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-500 outline-none">
+                        <option value="ar.alafasy">Mishary Al-Afasy</option>
+                        <option value="ar.abdulbasitmurattal">AbdulBaset (Murattal)</option>
+                        <option value="ar.sudais">Abdur-Rahman as-Sudais</option>
+                        <option value="ar.alghamdi">Saad Al-Ghamdi</option>
+                        <option value="ar.husary">Mahmoud Khalil Al-Husary</option>
+                    </select>
+
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-500">Speed</span>
+                        <select id="speed-select"
+                            class="bg-gray-100 dark:bg-gray-700 border-none text-sm rounded-lg px-2 py-2 focus:ring-2 focus:ring-primary-500 outline-none">
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="2">2x</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="now-playing"
+                    class="text-sm font-medium text-primary-600 dark:text-primary-400 hidden animate-pulse">
+                    Now playing: <span id="current-ayah-num">-</span>
+                </div>
+            </div>
+
+            <!-- Ayah List -->
+            <div id="ayah-list" class="space-y-4">
+                <!-- Ayahs will be injected here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
+        <div class="container mx-auto px-4 py-8 text-center">
+            <p class="text-gray-600 dark:text-gray-400">
+                Created with ❤️ by <span class="font-semibold text-primary-600 dark:text-primary-400">Ahmed
+                    Jaballah</span>
+            </p>
+            <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                Powered by <a href="https://alquran.cloud" target="_blank"
+                    class="text-primary-600 dark:text-primary-400 hover:underline">Al-Quran Cloud API</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Hidden Audio Element -->
+    <audio id="audio-player" class="hidden"></audio>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+
+</html>
