@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Install Hidaya - Get the Hidaya Quran app on your device.">
+    <title>Install Hidaya - Quran App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="images/icon-192.png">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <meta name="theme-color" content="#10b981">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        arabic: ['Amiri', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="font-sans bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between gap-4">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/30 transition-shadow">
+                        <span class="text-white font-bold text-lg">ه</span>
+                    </div>
+                    <span
+                        class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">Hidaya</span>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-1 bg-gray-100 dark:bg-gray-700/50 p-1 rounded-lg">
+                    <a href="index.html"
+                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Home</a>
+                    <a href="install.html"
+                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white dark:bg-gray-600 text-primary-600 dark:text-primary-400 shadow-sm">Install</a>
+                    <a href="about.html"
+                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">About</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button id="dark-mode-toggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg id="moon-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="container mx-auto px-4 py-8 flex-1">
+        <section id="install-section" class="max-w-2xl mx-auto animate-fade-in">
+            <h2 class="text-3xl font-bold mb-6 text-center">Install Hidaya</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <div class="space-y-8">
+                    <!-- Mobile -->
+                    <div class="flex gap-4">
+                        <div
+                            class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-primary-600 dark:text-primary-400 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Mobile (iOS & Android)</h3>
+                            <ol class="list-decimal pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+                                <li>Open <strong>Hidaya</strong> in Safari (iOS) or Chrome (Android).</li>
+                                <li>Tap the <strong>Share</strong> button (iOS) or <strong>Menu</strong> (Android).</li>
+                                <li>Select <strong>Add to Home Screen</strong>.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Desktop -->
+                    <div class="flex gap-4">
+                        <div
+                            class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold mb-2">Windows, Mac & Android</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Install Hidaya as a native app for the best
+                                experience.</p>
+
+                            <!-- Install Button (Always visible now, handles fallback) -->
+                            <button id="install-btn-page"
+                                class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 mb-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                Install App
+                            </button>
+
+                            <!-- Instructions (Hidden by default, shown if auto-install fails) -->
+                            <div id="install-instructions-desktop"
+                                class="hidden bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                                <p class="font-semibold mb-2 text-primary-600 dark:text-primary-400">Automatic install
+                                    unavailable</p>
+                                <ol class="list-decimal pl-5 space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    <li>Open browser menu (⋮ or ⋯).</li>
+                                    <li>Select <strong>Install Hidaya</strong> or <strong>Add to Home Screen</strong>.
+                                    </li>
+                                    <li>Or look for the install icon in the address bar.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto">
+        <div class="container mx-auto px-4 py-8 text-center">
+            <p class="text-gray-600 dark:text-gray-400">
+                Created with ❤️ by <span class="font-semibold text-primary-600 dark:text-primary-400">Ahmed
+                    Jaballah</span>
+            </p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

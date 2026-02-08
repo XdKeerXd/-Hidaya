@@ -82,12 +82,17 @@ const elements = {
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', () => {
     initDarkMode();
-    initAudioPlayer();
-    initSettings();
-    loadSurahs();
-    loadDailyAyah();
-    loadPrayerTimes();
-    initEventListeners();
+    initInstallPrompt();
+
+    // Only init core app if elements exist (e.g. not on about page)
+    if (elements.surahList || elements.dailyTranslation) {
+        initAudioPlayer();
+        initSettings();
+        loadSurahs();
+        loadDailyAyah();
+        loadPrayerTimes();
+        initEventListeners();
+    }
 });
 
 // ==================== SETTINGS & CONTROLS ====================
@@ -672,6 +677,60 @@ function initEventListeners() {
             showToast('Updating location...', 'success');
         });
     }
+
+    // PWA Install Button
+    initInstallPrompt();
+}
+
+// ==================== PWA INSTALL ====================
+let deferredPrompt;
+
+function initInstallPrompt() {
+    const installBtn = document.getElementById('install-btn'); // Header button
+    const installBtnPage = document.getElementById('install-btn-page'); // Install Page Button
+    const installInstructions = document.getElementById('install-instructions-desktop');
+
+    // Initially hide header button
+    if (installBtn) installBtn.classList.add('hidden');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        // Show header button if available
+        if (installBtn) installBtn.classList.remove('hidden');
+
+        // Ensure instructions are hidden if prompt is available (only if we wanted to hide them by default)
+        // But we keep instructions hidden in HTML by default, so this is fine.
+        if (installInstructions) installInstructions.classList.add('hidden');
+    });
+
+    const triggerInstall = async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            deferredPrompt = null;
+            if (installBtn) installBtn.classList.add('hidden');
+        } else {
+            // Fallback: Show instructions
+            if (installInstructions) {
+                installInstructions.classList.remove('hidden');
+                installInstructions.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('To install, use your browser menu or look for the install icon in the address bar.');
+            }
+        }
+    };
+
+    if (installBtn) installBtn.addEventListener('click', triggerInstall);
+    if (installBtnPage) installBtnPage.addEventListener('click', triggerInstall);
+
+    window.addEventListener('appinstalled', () => {
+        console.log('PWA was installed');
+        if (installBtn) installBtn.classList.add('hidden');
+        if (installInstructions) installInstructions.classList.remove('hidden');
+    });
 }
 
 function toggleAyahPlay(index) {
@@ -681,4 +740,13 @@ function toggleAyahPlay(index) {
         playAllMode = false;
         playAyah(index);
     }
+}
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker registered!', reg))
+            .catch(err => console.log('Service Worker registration failed: ', err));
+    });
 }

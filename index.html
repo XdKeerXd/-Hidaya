@@ -23,6 +23,12 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
 
+    <!-- PWA Manifest & Icons -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="images/icon-192.png">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <meta name="theme-color" content="#10b981">
+
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
@@ -70,6 +76,16 @@
                         class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">Hidaya</span>
                 </a>
 
+                <!-- Navigation Tabs -->
+                <nav class="hidden md:flex items-center gap-1 bg-gray-100 dark:bg-gray-700/50 p-1 rounded-lg">
+                    <a href="index.html"
+                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white dark:bg-gray-600 text-primary-600 dark:text-primary-400 shadow-sm">Home</a>
+                    <a href="install.html"
+                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Install</a>
+                    <a href="about.html"
+                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">About</a>
+                </nav>
+
                 <!-- Search Bar -->
                 <div class="flex-1 max-w-md hidden sm:block">
                     <div class="relative">
@@ -91,6 +107,16 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+
+                    <!-- Install App Button (Hidden by default) -->
+                    <button id="install-btn"
+                        class="hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-primary-600 dark:text-primary-400"
+                        title="Install App">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
                     </button>
 
@@ -173,18 +199,7 @@
             </div>
         </section>
 
-        <!-- Search Results Section (Hidden by default) -->
-        <section id="search-results" class="hidden mb-8">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl font-bold">Search Results</h2>
-                <button id="clear-search" class="text-primary-600 dark:text-primary-400 hover:underline">
-                    Clear Search
-                </button>
-            </div>
-            <div id="search-results-list" class="space-y-4">
-                <!-- Search results will be injected here -->
-            </div>
-        </section>
+
 
         <!-- Surah List Section -->
         <section id="surah-section">
@@ -305,6 +320,8 @@
 
     <!-- JavaScript -->
     <script src="app.js"></script>
+
+
 </body>
 
 </html>
