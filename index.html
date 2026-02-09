@@ -23,13 +23,6 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
 
-
-    <!-- PWA Manifest & Icons -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="images/icon-192.png">
-    <link rel="apple-touch-icon" href="images/icon-192.png">
-    <meta name="theme-color" content="#10b981">
-
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
@@ -52,10 +45,6 @@
                             700: '#047857',
                             800: '#065f46',
                             900: '#064e3b',
-                        },
-                        amber: {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
                         }
                     }
                 }
@@ -81,16 +70,6 @@
                         class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">Hidaya</span>
                 </a>
 
-                <!-- Navigation Tabs -->
-                <nav class="hidden md:flex items-center gap-1 bg-gray-100 dark:bg-gray-700/50 p-1 rounded-lg">
-                    <a href="index.html"
-                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white dark:bg-gray-600 text-primary-600 dark:text-primary-400 shadow-sm">Home</a>
-                    <a href="install.html"
-                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Install</a>
-                    <a href="about.html"
-                        class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">About</a>
-                </nav>
-
                 <!-- Search Bar -->
                 <div class="flex-1 max-w-md hidden sm:block">
                     <div class="relative">
@@ -101,44 +80,17 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
-                        <button id="clear-search"
-                            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
                     </div>
                 </div>
 
                 <!-- Controls -->
                 <div class="flex items-center gap-3">
-                    <!-- Ramadan Toggle -->
-                    <button id="ramadan-toggle-btn"
-                        class="p-2 rounded-full hover:bg-amber-100 dark:hover:bg-amber-900/30 text-amber-500 transition-colors"
-                        title="Toggle Ramadan Mode">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 2a6 6 0 00-6 6c0 1.887.89 3.57 2.273 4.704a1 1 0 001.355-1.44A4 4 0 019 6.54V6a1 1 0 112 0v.54a4 4 0 011.372 4.724 1 1 0 001.355 1.44A6 6 0 0010 2z" />
-                        </svg>
-                    </button>
-
                     <!-- Mobile Search Toggle -->
                     <button id="mobile-search-toggle"
                         class="sm:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-
-                    <!-- Install App Button (Hidden by default) -->
-                    <button id="install-btn"
-                        class="hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-primary-600 dark:text-primary-400"
-                        title="Install App">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
                     </button>
 
@@ -177,40 +129,11 @@
                 <input type="text" id="mobile-search-input" placeholder="Search Quran..."
                     class="w-full px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500">
             </div>
-
-            <!-- Search Results (injected) -->
-            <div id="search-results"
-                class="hidden mt-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 absolute left-0 right-0 z-50 mx-4">
-                <div id="search-results-list" class="space-y-2 max-h-96 overflow-y-auto">
-                    <!-- Results Here -->
-                </div>
-            </div>
         </div>
     </header>
 
     <!-- ==================== MAIN CONTENT ==================== -->
     <main class="container mx-auto px-4 py-8">
-
-        <!-- RAMADAN DASHBOARD (Hidden by default) -->
-        <section id="ramadan-hero" class="text-center py-8 mb-8 hidden">
-            <div
-                class="inline-block bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 px-4 py-1 rounded-full text-sm font-medium mb-4 animate-pulse">
-                Ramadan Kareem 🌙
-            </div>
-            <h1
-                class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
-                Day <span id="ramadan-day-display">1</span>
-            </h1>
-            <p id="ramadan-reminder" class="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                Welcome to your daily dashboard
-            </p>
-
-            <!-- Daily Dua -->
-            <div id="daily-dua-container"
-                class="max-w-2xl mx-auto bg-gradient-to-br from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800 border border-amber-100 dark:border-amber-900 rounded-2xl p-6 shadow-sm mb-8">
-                <!-- Dua Content -->
-            </div>
-        </section>
 
         <!-- Hero Section -->
         <section id="hero" class="text-center py-12 mb-8">
@@ -250,6 +173,18 @@
             </div>
         </section>
 
+        <!-- Search Results Section (Hidden by default) -->
+        <section id="search-results" class="hidden mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold">Search Results</h2>
+                <button id="clear-search" class="text-primary-600 dark:text-primary-400 hover:underline">
+                    Clear Search
+                </button>
+            </div>
+            <div id="search-results-list" class="space-y-4">
+                <!-- Search results will be injected here -->
+            </div>
+        </section>
 
         <!-- Surah List Section -->
         <section id="surah-section">
@@ -261,12 +196,6 @@
                 </svg>
                 Surahs
             </h2>
-
-            <!-- Ramadan Reading Plan List (Visible in Ramadan Mode) -->
-            <div id="ramadan-plan-container" class="hidden mb-8">
-                <!-- Injected via JS -->
-                <p class="text-gray-500">Ramadan reading plan functionality coming regarding Juz...</p>
-            </div>
 
             <div id="surah-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 <!-- Surah cards will be injected here -->
@@ -335,7 +264,6 @@
                         <select id="speed-select"
                             class="bg-gray-100 dark:bg-gray-700 border-none text-sm rounded-lg px-2 py-2 focus:ring-2 focus:ring-primary-500 outline-none">
                             <option value="0.75">0.75x</option>
-                            <option value="0.8">0.8x</option>
                             <option value="1" selected>1x</option>
                             <option value="1.25">1.25x</option>
                             <option value="1.5">1.5x</option>
@@ -375,10 +303,8 @@
     <!-- Hidden Audio Element -->
     <audio id="audio-player" class="hidden"></audio>
 
-    <!-- JavaScript (Module) -->
-    <script type="module" src="js/app.js"></script>
-
-
+    <!-- JavaScript -->
+    <script src="app.js"></script>
 </body>
 
 </html>
