@@ -382,3 +382,21 @@
     background: #10b981;
     color: white;
 }
+
+/* Ramadan Mode Styles */
+.ramadan-mode {
+    --tw-bg-opacity: 1;
+    background-color: #f0fdf4;
+    /* Light green tint */
+}
+
+.dark .ramadan-mode {
+    background-color: #064e3b;
+    /* Dark green */
+}
+
+/* Custom Scrollbar for Ramadan */
+.ramadan-mode ::-webkit-scrollbar-thumb {
+    background-color: #d97706;
+    /* Amber for Ramadan vibe */
+}
